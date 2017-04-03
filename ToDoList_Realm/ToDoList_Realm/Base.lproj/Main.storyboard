@@ -101,10 +101,10 @@
             </objects>
             <point key="canvasLocation" x="1021.6" y="165.06746626686657"/>
         </scene>
-        <!--TasksVC-->
+        <!--Title-->
         <scene sceneID="hgR-o9-hJz">
             <objects>
-                <viewController id="N8W-21-QqI" customClass="TasksVC" customModule="ToDoList_Realm" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="N8W-21-QqI" customClass="TasksVC" customModule="ToDoList_Realm" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="xC8-L0-huA"/>
                         <viewControllerLayoutGuide type="bottom" id="aGy-7T-36l"/>
@@ -112,8 +112,58 @@
                     <view key="view" contentMode="scaleToFill" id="OnI-jm-bW2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ojA-63-nTL">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="L1h-Ga-cRu" style="IBUITableViewCellStyleDefault" id="tX9-6h-Euc">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tX9-6h-Euc" id="DHs-MU-snl">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L1h-Ga-cRu">
+                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="N8W-21-QqI" id="gEj-Ej-MBv"/>
+                                    <outlet property="delegate" destination="N8W-21-QqI" id="QPW-Wv-TgX"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ojA-63-nTL" secondAttribute="trailing" id="7pH-5f-iGa"/>
+                            <constraint firstItem="aGy-7T-36l" firstAttribute="top" secondItem="ojA-63-nTL" secondAttribute="bottom" id="IeK-PD-eWz"/>
+                            <constraint firstItem="ojA-63-nTL" firstAttribute="leading" secondItem="OnI-jm-bW2" secondAttribute="leading" id="eYL-6Q-tbj"/>
+                            <constraint firstItem="ojA-63-nTL" firstAttribute="top" secondItem="xC8-L0-huA" secondAttribute="bottom" id="quT-n1-Sov"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="Qan-mE-lKA">
+                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="8PQ-eM-bec">
+                            <connections>
+                                <action selector="didClickOnEditTasks:" destination="N8W-21-QqI" id="GLo-w6-XR2"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="RPi-4B-rnD">
+                            <connections>
+                                <action selector="didClickOnNewTask:" destination="N8W-21-QqI" id="Ezf-xO-s9V"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tasksTableView" destination="ojA-63-nTL" id="tVZ-6U-fGs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYK-nW-CfX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
