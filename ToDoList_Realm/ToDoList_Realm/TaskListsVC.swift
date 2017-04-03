@@ -128,6 +128,7 @@ class TaskListsVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         alertController.addTextField { (textfield) in
             textfield.placeholder = "Task List Name"
+            textfield.clearButtonMode = .always
             textfield.addTarget(self, action: #selector(self.listNameFieldDidChange(_:)), for: UIControlEvents.editingChanged)
             if updatedList != nil {
                 textfield.text = updatedList.name

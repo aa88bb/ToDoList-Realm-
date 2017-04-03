@@ -125,6 +125,7 @@ class TasksVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         alertController.addTextField { (textField) -> Void in
             textField.placeholder = "Task Name"
+            textField.clearButtonMode = .always
             textField.addTarget(self, action: #selector(self.taskNameFieldDidChange(_:)) , for: UIControlEvents.editingChanged)
             if updatedTask != nil{
                 textField.text = updatedTask.name
@@ -141,7 +142,7 @@ class TasksVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (deleteAction, indexPath) -> Void in
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (deleteAction, indexPath)  in
             
             //Deletion will go here
             
