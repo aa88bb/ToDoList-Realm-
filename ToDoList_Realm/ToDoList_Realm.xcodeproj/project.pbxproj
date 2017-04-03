@@ -92,8 +92,8 @@
 				757AFB691E91AA040014F0C5 /* Info.plist */,
 				757AFB761E91AAE90014F0C5 /* Task.swift */,
 				757AFB781E91AB3C0014F0C5 /* TaskList.swift */,
-				757AFB7A1E91ABBB0014F0C5 /* TasksVC.swift */,
 				757AFB7C1E91ABCC0014F0C5 /* TaskListsVC.swift */,
+				757AFB7A1E91ABBB0014F0C5 /* TasksVC.swift */,
 			);
 			path = ToDoList_Realm;
 			sourceTree = "<group>";
@@ -350,6 +350,7 @@
 				757AFB6E1E91AA040014F0C5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,11 +9,11 @@
 import UIKit
 import RealmSwift
 
-class TasksVC: UIViewController {
+class TasksVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     @IBOutlet weak var tasksTableView: UITableView!
     
-    let uiRealm = try! Realm()
+    let myRealm = try! Realm()
     var selectedList : TaskList!
     var openTasks : Results<Task>!
     var completedTasks : Results<Task>!
@@ -37,24 +37,27 @@ class TasksVC: UIViewController {
         isEditingMode = !isEditingMode
         self.tasksTableView.setEditing(isEditingMode, animated: true)
     }
+    
     func readTasksAndUpateUI(){
         
-        completedTasks = self.selectedList.tasks.filter("isCompleted = true")
-        openTasks = self.selectedList.tasks.filter("isCompleted = false")
+        completedTasks = selectedList.tasks.filter("isCompleted = true")
+        openTasks = selectedList.tasks.filter("isCompleted = false")
         
-        self.tasksTableView.reloadData()
+        tasksTableView.reloadData()
     }
     
     // MARK: - UITableViewDataSource -
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         if section == 0{
             return openTasks.count
         }
         return completedTasks.count
     }
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         if section == 0{
@@ -64,7 +67,7 @@ class TasksVC: UIViewController {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")
         var task: Task!
         if indexPath.section == 0{
             task = openTasks[indexPath.row]
@@ -94,7 +97,7 @@ class TasksVC: UIViewController {
             
             if updatedTask != nil{
                 // update mode
-                try! self.uiRealm.write{
+                try! self.myRealm.write{
                     updatedTask.name = taskName!
                     self.readTasksAndUpateUI()
                 }
@@ -104,14 +107,14 @@ class TasksVC: UIViewController {
                 let newTask = Task()
                 newTask.name = taskName!
                 
-                try! self.uiRealm.write{
+                try! self.myRealm.write{
                     
                     self.selectedList.tasks.append(newTask)
                     self.readTasksAndUpateUI()
                 }
             }
             
-            print(taskName ?? "")
+            
         }
         
         alertController.addAction(createAction)
@@ -150,8 +153,8 @@ class TasksVC: UIViewController {
                 taskToBeDeleted = self.completedTasks[indexPath.row]
             }
             
-            try! self.uiRealm.write{
-                self.uiRealm.delete(taskToBeDeleted)
+            try! self.myRealm.write{
+                self.myRealm.delete(taskToBeDeleted)
                 self.readTasksAndUpateUI()
             }
         }
@@ -179,7 +182,7 @@ class TasksVC: UIViewController {
             else{
                 taskToBeUpdated = self.completedTasks[indexPath.row]
             }
-            try! self.uiRealm.write{
+            try! self.myRealm.write{
                 taskToBeUpdated.isCompleted = true
                 self.readTasksAndUpateUI()
             }

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -150,16 +151,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="Qan-mE-lKA">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="8PQ-eM-bec">
-                            <connections>
-                                <action selector="didClickOnEditTasks:" destination="N8W-21-QqI" id="GLo-w6-XR2"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="RPi-4B-rnD">
-                            <connections>
-                                <action selector="didClickOnNewTask:" destination="N8W-21-QqI" id="Ezf-xO-s9V"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="RPi-4B-rnD">
+                                <connections>
+                                    <action selector="didClickOnNewTask:" destination="N8W-21-QqI" id="Ezf-xO-s9V"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="8PQ-eM-bec">
+                                <connections>
+                                    <action selector="didClickOnEditTasks:" destination="N8W-21-QqI" id="GLo-w6-XR2"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="tasksTableView" destination="ojA-63-nTL" id="tVZ-6U-fGs"/>
